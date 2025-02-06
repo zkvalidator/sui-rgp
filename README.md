@@ -1,6 +1,6 @@
 # Sui Gas Price Updater
 
-A Node.js script that monitors Sui network epochs and automatically updates validator gas price based on SUI token price changes.
+A Node.js script that monitors Sui network epochs and automatically updates Sui gas price based on SUI token price before the Epoch change.
 
 ## Features
 
