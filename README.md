@@ -10,6 +10,13 @@ A Node.js script that monitors Sui network epochs and automatically updates vali
 - Automatically executes validator gas price updates when epoch is ending (< 1 hour remaining)
 - Provides detailed logging of epoch status and price calculations
 
+## NOTE:
+
+- This script does NOT take the Sui stake subsidies into calcuations
+- This script users the following reference point:
+       * SUI : 1 USD
+       * MIST : 750
+
 ## Prerequisites
 
 1. **Ubuntu 22.04**
