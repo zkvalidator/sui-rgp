@@ -14,8 +14,10 @@ A Node.js script that monitors Sui network epochs and automatically updates vali
 
 - This script does NOT take the Sui stake subsidies into calcuations
 - This script users the following reference point:
+  ```
        * SUI : 1 USD
        * MIST : 750
+  ```
 
 ## Prerequisites
 
