@@ -1,6 +1,6 @@
 # Sui Gas Price Updater
 
-A Node.js script that monitors Sui network epochs and automatically updates Sui gas price based on SUI token price before the Epoch change.
+A Node.js tool that monitors Sui network epochs and automatically updates Sui gas price based on SUI token price before the Epoch change.
 
 ## Features
 
@@ -12,8 +12,8 @@ A Node.js script that monitors Sui network epochs and automatically updates Sui 
 
 ## NOTE:
 
-- This script does NOT take the Sui stake subsidies into calcuations
-- This script users the following reference point:
+- This tool does NOT take the Sui stake subsidies into calcuations
+- This tool users the following reference point:
   
     ```
     SUI : 1 USD
@@ -91,7 +91,7 @@ A Node.js script that monitors Sui network epochs and automatically updates Sui 
      - sui_price: Reference SUI price in USD
      - mist: Reference mist value
 
-## Running the Script
+## Running the Tool
 
 1. **Start with PM2**
    ```bash
@@ -113,7 +113,7 @@ A Node.js script that monitors Sui network epochs and automatically updates Sui 
 ## How It Works
 
 1. **Hourly Checks**
-   - Script runs every hour at minute 0
+   - Tool runs every hour at minute 0
    - Fetches current epoch information
    - Displays remaining time until epoch end
 
@@ -152,7 +152,7 @@ Successfully updated validator gas price
 
 ## Troubleshooting
 
-1. **Script Not Running**
+1. **Tool Not Running**
    - Check environment variables are set correctly
    - Verify Sui CLI is installed and accessible
    - Check CoinMarketCap API key is valid
