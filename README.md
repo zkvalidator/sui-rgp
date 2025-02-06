@@ -5,9 +5,9 @@ A Node.js script that monitors Sui network epochs and automatically updates Sui 
 ## Features
 
 - Monitors Sui network epoch status every hour
-- Fetches current SUI price from CoinMarketCap
+- Fetches current SUI price from CoinMarketCap when epoch is ending (< 1 hour remaining) and executes the following steps.
 - Calculates optimal mist value based on price changes
-- Automatically executes validator gas price updates when epoch is ending (< 1 hour remaining)
+- Automatically updates Sui gas price
 - Provides detailed logging of epoch status and price calculations
 
 ## NOTE:
