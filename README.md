@@ -12,29 +12,34 @@ A Node.js script that monitors Sui network epochs and automatically updates vali
 
 ## Prerequisites
 
-1. **Node.js Installation**
+1. **Ubuntu 22.04**
+
+2. **SUI client**
+
+3. **Sui Validator Keystore file**. In this case, we have the file at the following location:
+     ```
+     ~/.sui/sui_config
+     ```
+
+4. **Node.js Installation**
    - Download and install Node.js from [official website](https://nodejs.org/)
    - Verify installation:
      ```bash
-     node --version  # Should be v14.0.0 or higher
+     node --version
      npm --version
      ```
 
-2. **CoinMarketCap API Key**
-   - Sign up at [CoinMarketCap](https://pro.coinmarketcap.com/signup)
+5. **CoinMarketCap API Key**
+   - Sign up for a free API key at [CoinMarketCap](https://pro.coinmarketcap.com/signup)
    - Choose "Basic" plan (Free basic access for personal use)
    - After signing up, get your API key from the dashboard
-
-3. **Sui CLI**
-   - Ensure Sui CLI is installed and accessible
-   - Verify installation: `sui --version`
 
 ## Installation
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/sui-gas-price.git
-   cd sui-gas-price
+   git clone https://github.com/synergynodes/sui-rgp.git
+   cd sui-rgp
    ```
 
 2. **Install Dependencies**
@@ -42,41 +47,57 @@ A Node.js script that monitors Sui network epochs and automatically updates vali
    npm install
    ```
 
-3. **Configure Environment Variables**
-   Create a .env file with the following:
+3. **Install PM2 Globally**
+   ```bash
+   npm install -g pm2
    ```
-   CMC_API_KEY=your_coinmarketcap_api_key
-   SUI_PATH=/usr/local/bin
-   SUI_RPC_URL=https://fullnode.mainnet.sui.io/
-   ```
-   Replace values with your actual configuration:
-   - CMC_API_KEY: Your CoinMarketCap API key
-   - SUI_PATH: Path to the directory containing the sui binary
-   - SUI_RPC_URL: Sui RPC endpoint (default provided)
 
-4. **Configure Reference Values**
-   Update reference.json with your baseline values:
-   ```json
-   {
-     "sui_price": 1,
-     "mist": 750
-   }
-   ```
-   - sui_price: Reference SUI price in USD
-   - mist: Reference mist value
+## Configuration
+
+1. **Create Environment File**
+   - Create a `.env` file in the project root:
+     ```bash
+     touch .env
+     ```
+   - Add the following content:
+     ```
+     CMC_API_KEY=your_coinmarketcap_api_key
+     SUI_PATH=/usr/local/bin
+     SUI_RPC_URL=https://fullnode.mainnet.sui.io/
+     ```
+     Replace values with your actual configuration:
+      - CMC_API_KEY: Your CoinMarketCap API key
+      - SUI_PATH: Path to the directory containing the sui binary
+      - SUI_RPC_URL: Sui RPC endpoint (default provided)
+
+2. **Verify Configuration**
+   - Ensure `reference.json` contains the base values:
+     ```json
+     {
+         "sui_price": 1,
+         "mist": 750
+     }
+     ```
+     - sui_price: Reference SUI price in USD
+     - mist: Reference mist value
 
 ## Running the Script
 
-1. **Start the Script**
+1. **Start with PM2**
    ```bash
-   node index.js
+   pm2 start index.js --name "sui-gas-updater"
    ```
 
-2. **Using PM2 (Recommended for Production)**
+2. **Monitor the Process**
    ```bash
-   npm install -g pm2
-   pm2 start index.js --name "sui-gas-price"
-   pm2 save
+   pm2 logs sui-gas-updater    # View logs
+   pm2 status                  # Check status
+   ```
+
+3. **Auto-start on System Boot**
+   ```bash
+   pm2 startup               # Generate startup script
+   pm2 save                  # Save current process list
    ```
 
 ## How It Works
@@ -135,6 +156,8 @@ Successfully updated validator gas price
    - Verify CMC_API_KEY is valid
    - Check internet connectivity
    - Review API response errors in logs
+
+**Feel free to change / update the code based on your requirements.**
 
 ## Support
 
