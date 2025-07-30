@@ -23,7 +23,7 @@ jobs:
           image: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}
           tags: latest ${{ github.sha }}
           containerfiles: |
-            ./Dockerfile
+            ./Containerfile
 
       - name: Log in to GHCR
         uses: redhat-actions/podman-login@v1
